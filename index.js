@@ -80,6 +80,13 @@ app.post("/project", async(req, res)=>{
       project: project
     })
 })
+app.get("/list", async (req, res)=>{
+  const result = await db.query("SELECT * FROM projects");
+  //console.log(result.rows);
+  res.render("projectList.ejs", {
+    projects: result.rows
+  });
+})
  
 
 app.listen(port, ()=>{

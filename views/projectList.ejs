@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects List</title>
+</head>
+<body>
+    <% if(locals.projects){%>
+    <table>
+        <tr>
+            <th>Project ID</th> <th>Project Title</th> <th>Project Field</th> <th>Project Difficulty</th>
+        </tr>
+        <% projects.forEach(project => { %>
+        <tr>
+            <td><%= project.project_id%></td> <td><%=project.title%></td> <td><%=project.field%></td> <td><%=project.difficulty%></td>
+        </tr>
+        <% }); %>
+    </table>
+    <% } %>
+</body>
+</html>
