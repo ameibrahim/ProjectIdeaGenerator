@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIG Application</title>
+</head>
+<body>
+    <h1>WELCOME TO THE PIG (Project Idea Generator)</h1>
+    <form action="/project" method="post">
+        <p>Choose the field of the project:</p>
+        <ul>
+            <!--<li><label for="AIoT">AI and IoT</label><input type="radio" name="field" id="AIoT" value="AI and IoT"></li>
+            <li><label for="AI">AI</label><input type="radio" name="field" id="AI" value="AI"></li>
+            <li><label for="IoT">Iot</label><input type="radio" name="field" id="IoT" value="IoT"></li>-->
+            <li><label for="D-S">Data Science</label><input type="radio" name="field" id="D-S" value="Data Science"></li>
+            <li><label for="C-S">Cybersecurity</label><input type="radio" name="field" id="C-S" value="Cybersecurity"></li>
+            <li><label for="M-L">Machine learning</label><input type="radio" name="field" id="M-L" value="Machine learning"></li>
+            <li><label for="pharma">Pharmacy</label><input type="radio" name="field" id="pharma" value="Pharmacy"></li>
+            <li><label for="med">Medecine</label><input type="radio" name="field" id="med" value="Medecine"></li>
+            <li><label for="bugs">Entomology (bugs)</label><input type="radio" name="field" id="bugs" value="Entomology"></li>
+            <li><label for="plants">Agriculture</label><input type="radio" name="field" id="plants" value="Agriculture"></li>
+            <li><label for="water">Water Treatment</label><input type="radio" name="field" id="water" value="Water Treatment"></li>
+        </ul>
+        <p>Choose an average duration for the project (in weeks):</p>
+        <ul>
+            <li><label for="2-week">2</label><input type="radio" name="duration" id="2-week" value="2"></li>
+            <li><label for="4-week">4</label><input type="radio" name="duration" id="4-week" value="4"></li>
+            <li><label for="6-week">6</label><input type="radio" name="duration" id="6-week" value="6"></li>
+        </ul>
+        <p>Choose the difficulty:</p>
+        <ul>
+            <li><label for="easy">easy</label><input type="radio" name="difficulty" id="easy" value="easy"></li>
+            <li><label for="medium">medium</label><input type="radio" name="difficulty" id="medium" value="medium"></li>
+            <li><label for="hard">hard</label><input type="radio" name="difficulty" id="hard" value="hard"></li>
+        </ul>
+        <input type="submit" value="Get Project">
+    </form>
+</body>
+</html>
