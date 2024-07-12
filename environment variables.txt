@@ -1,0 +1,6 @@
+API_KEY="your key"
+DB_USER="your postgres username"
+DB_HOST="localhost"
+DB_NAME="PIG"
+DB_PW="your postgre password"
+DB_PORT=5432
