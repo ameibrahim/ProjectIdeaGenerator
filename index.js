@@ -60,6 +60,9 @@ async function isDuplicate(project){
 app.get("/", async(req, res)=>{
     res.render("home.ejs");
 })
+app.get("/generate", async(req, res)=>{
+  res.render("index.ejs");
+})
 app.post("/project", async(req, res)=>{
     let field = req.body["field"];
     let difficulty = req.body["difficulty"];
