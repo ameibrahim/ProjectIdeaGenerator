@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects List</title>
 </head>
-<body>
+<body> -->
+    <%- include("partials/header.ejs") %>
     <% if(locals.projects){%>
     <table>
         <tr>
@@ -19,5 +20,5 @@
     </table>
     <% } %>
     <a href="/">Go back</a>
-</body>
-</html>
+
+    <%- include("partials/footer.ejs") %>

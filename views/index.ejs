@@ -1,17 +1,18 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PIG Application</title>
 </head>
-<body>
+<body> -->
+    <%- include("partials/header.ejs") %>
     <h1>WELCOME TO THE PIG (Project Idea Generator)</h1>
     <a href="/list">Get the project list</a>
     <form action="/project" method="post">
         <p>Choose the field of the project:</p>
         <ul>
-            <li><label for="D-S">Data Science</label><input type="radio" name="field" id="D-S" value="Data Science"></li>
+            <li><label for="D-S">Data Science</label><input type="radio" name="field" id="D-S" value="Data Science" required></li>
             <li><label for="C-S">Cybersecurity</label><input type="radio" name="field" id="C-S" value="Cybersecurity"></li>
             <li><label for="M-L">Machine learning</label><input type="radio" name="field" id="M-L" value="Machine learning"></li>
             <li><label for="pharma">Pharmacy</label><input type="radio" name="field" id="pharma" value="Pharmacy"></li>
@@ -21,18 +22,27 @@
             <li><label for="water">Water Treatment</label><input type="radio" name="field" id="water" value="Water Treatment"></li>
         </ul>
         <p>Choose an average duration for the project (in weeks):</p>
-        <ul>
+        <!-- <ul>
             <li><label for="2-week">2</label><input type="radio" name="duration" id="2-week" value="2"></li>
             <li><label for="4-week">4</label><input type="radio" name="duration" id="4-week" value="4"></li>
             <li><label for="6-week">6</label><input type="radio" name="duration" id="6-week" value="6"></li>
-        </ul>
+        </ul> -->
+        <label for="project-duration">Number of weeks :</label>
+        <input type="range" name="duration" id="project-duration" min="2" max="20" oninput="this.nextElementSibling.value = this.value">
+        <output>2</output>
         <p>Choose the difficulty:</p>
-        <ul>
-            <li><label for="easy">easy</label><input type="radio" name="difficulty" id="easy" value="easy"></li>
+        <ul> 
+            <li><label for="easy">easy</label><input type="radio" name="difficulty" id="easy" value="easy" required></li>
             <li><label for="medium">medium</label><input type="radio" name="difficulty" id="medium" value="medium"></li>
             <li><label for="hard">hard</label><input type="radio" name="difficulty" id="hard" value="hard"></li>
         </ul>
         <input type="submit" value="Get Project">
     </form>
-</body>
-</html>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const rangeInput = document.getElementById('project-duration');
+            const output = rangeInput.nextElementSibling;
+            output.value = rangeInput.value;
+        })
+    </script>
+    <%- include("partials/footer.ejs") %>

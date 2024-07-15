@@ -58,14 +58,15 @@ async function isDuplicate(project){
 }
 
 app.get("/", async(req, res)=>{
-    res.render("index.ejs");
+    res.render("home.ejs");
 })
 app.post("/project", async(req, res)=>{
     let field = req.body["field"];
     let difficulty = req.body["difficulty"];
     let length = req.body["duration"];
 
-    const prompt = `Generate a project idea in ${field} field for a university student (Assume that the student is competent in programming, AI, IoT and Web development). The project should have a level of difficulty that is ${difficulty} and that could take ${length} weeks to complete. Give your response as a JSON with two elements the project's title and description`;
+    const prompt = `Generate a project idea in ${field} field for a university student (Assume that the student has a medium level in programming, AI, IoT and Web development). The project should have a level of difficulty that is ${difficulty} and that could take ${length} weeks to complete. Give your response as a JSON with two elements the project's title and description`;
+    console.log(prompt);
     let response = await main(prompt);
     let project = JSON.parse(response.message.content);
     
