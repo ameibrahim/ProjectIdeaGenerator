@@ -1,0 +1,16 @@
+<%- include("partials/header.ejs") %>
+<div class="container my-5">
+    <div class="p-5 text-center bg-body-tertiary rounded-3">
+      <h1 class="text-body-emphasis"><%= project.title %></h1>
+      <p class="lead">
+        <%= project.description%>
+      </p>
+    </div>
+    <div id="generate-container">
+      <form action="/list" method="get">
+        <input type="submit" name="" id="generate-button" value="Go back">
+      </form>
+    </div>
+  </div>
+
+<%- include("partials/footer.ejs") %>

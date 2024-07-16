@@ -9,18 +9,40 @@
     <%- include("partials/header.ejs") %>
     <% if(locals.projects){%>
 <div id="table-container">
-    <table id="proj-list">
-        <tr>
-            <th>Project ID</th> <th>Project Title</th> <th>Project Field</th> <th>Project Difficulty</th>
-        </tr>
-        <% projects.forEach(project => { %>
-        <tr>
-            <td><%= project.project_id%></td> <td><%=project.title%></td> <td><%=project.field%></td> <td><%=project.difficulty%></td>
-        </tr>
-        <% }); %>
-    </table>
+    <form method="post" action="/details">
+        <table id="proj-list">
+            <tr>
+                <th>Project ID</th> <th>Project Title</th> <th>Project Field</th> <th>Project Difficulty</th> <th>Description</th>
+            </tr>
+            <% projects.forEach(project => { %>
+            <tr>
+                <td><%= project.project_id%></td> <td><%=project.title%></td> <td><%=project.field%></td> <td><%=project.difficulty%></td> <td><button type="button" onclick="submitForm('<%= project.title %>')" id="generate-button">Get Description</button></td>
+            </tr>
+            <% }); %>
+        </table>
+    </form>
 </div>
     <% } %>
-    <a href="/">Go back</a>
+    <script>
+        function submitForm(projectTitle) {
+            // Create a new form
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/details';
+
+            // Create a hidden input with the project title
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'project-title';
+            input.value = projectTitle;
+
+            // Append the hidden input to the form
+            form.appendChild(input);
+
+            // Append the form to the body and submit it
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
 
     <%- include("partials/footer.ejs") %>
