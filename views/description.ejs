@@ -1,10 +1,22 @@
 <%- include("partials/header.ejs") %>
 <div class="container my-5">
-    <div class="p-5 text-center bg-body-tertiary rounded-3">
+    <div class="p-5 text-center bg-body-tertiary rounded-3" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
       <h1 class="text-body-emphasis"><%= project.title %></h1>
       <p class="lead">
         <%= project.description%>
       </p>
+    </div>
+    <div id="task-container">
+        <h1 class="text-body-emphasis" id="desc-title">Tasks to complete</h1>
+        <div>
+            <table class="task-table">
+                <% tasks.forEach(task =>{ %>
+                <tr>
+                    <td class="lead"><%= task %> </td>
+                </tr>
+                <% }) %>
+            </table>
+        </div>
     </div>
     <div id="generate-container">
       <form action="/list" method="get">

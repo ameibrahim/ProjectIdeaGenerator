@@ -9,8 +9,9 @@
     <%- include("partials/header.ejs") %>
     <!-- <h1>WELCOME TO THE PIG (Project Idea Generator)</h1>
     <a href="/list">Get the project list</a> -->
+    <div id="loader-container"><div id="loader" class="loader"></div></div>
     <div id="page-body">
-        <form action="/project" method="post">
+        <form action="/project" method="post" id="project-form">
             <h3>Choose the field of the project:</h3>
             <div class="radio-group">
                 <input type="radio" name="field" id="D-S" value="Data Science" required><label for="D-S">Data Science</label>
@@ -59,5 +60,13 @@
             const output = rangeInput.nextElementSibling;
             output.value = rangeInput.value;
         })
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("project-form");
+            const loader = document.getElementById("loader");
+
+            form.addEventListener("submit", function(event) {
+                loader.style.display = "block"; // Show the loader
+            });
+        });
     </script>
     <%- include("partials/footer.ejs") %>

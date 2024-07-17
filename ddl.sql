@@ -3,5 +3,6 @@ CREATE TABLE Projects(
     Title TEXT,
 	Field TEXT,
 	Difficulty TEXT,
-    Description TEXT
+    Description TEXT,
+    Task TEXT
 );
