@@ -1,7 +1,8 @@
 <%- include("partials/header.ejs") %>
 <div class="container my-5">
+    <div id="print-section">
     <div class="p-5 text-center bg-body-tertiary rounded-3" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-      <h1 class="text-body-emphasis"><%= project.title %></h1>
+      <h1 class="text-body-emphasis">Project : <%= project.title %></h1>
       <p class="lead">
         <%= project.description%>
       </p>
@@ -18,11 +19,37 @@
             </table>
         </div>
     </div>
+    </div><!-- print section end -->
     <div id="generate-container">
       <form action="/list" method="get">
-        <input type="submit" name="" id="generate-button" value="Go back">
+        <input type="submit" name="" id="generate-button" value="Go back"> 
       </form>
+      <button id="save-pdf" class="pdf-button">Get PDF</button>
     </div>
   </div>
+  <script>
+    document.getElementById('save-pdf').addEventListener('click', () => {
+      const htmlContent = document.getElementById('print-section').outerHTML;
+
+      fetch('/generate-pdf', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ html: htmlContent })
+      })
+      .then(response => response.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'webpage.pdf';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      })
+      .catch(error => console.error('Error generating PDF:', error));
+    });
+  </script>
 
 <%- include("partials/footer.ejs") %>

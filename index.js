@@ -2,7 +2,8 @@ import OpenAI from "openai";
 import env from "dotenv";
 import pg from "pg";
 import express from "express";
-import bodyParser from "body-parser"
+import bodyParser from "body-parser";
+import pdf from "html-pdf"
 
 const app = express();
 const port = 3000;
@@ -17,6 +18,7 @@ const db = new pg.Client({
   });
 db.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(express.static("public"));
 
 const openai = new OpenAI({
@@ -116,9 +118,26 @@ app.post("/details", async (req, res)=>{
     console.log(err);
     res.redirect("/");
   }
-})
+});
+app.post("/generate-pdf", (req, res) => {
+  const htmlContent = req.body.html;
+  const options = {
+    format: 'A4',
+    orientation: 'portrait',
+    border: '10mm'
+  };
+
+  pdf.create(htmlContent, options).toStream((err, stream) => {
+    if (err) return res.status(500).send(err);
+
+    res.setHeader('Content-type', 'application/pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=webpage.pdf');
+
+    stream.pipe(res);
+  });
+});
  
 
 app.listen(port, ()=>{
     console.log(`Server running on port ${port}`);
-})
+});

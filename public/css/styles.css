@@ -1,3 +1,6 @@
+html {
+    background-color: #f5f5f5;
+}
 #page-body {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: #f5f5f5;
@@ -6,7 +9,7 @@
     align-items: center;
     height: 75%;
     margin: 0;
-    
+    flex-direction: column;
 }
 
 form {
@@ -15,6 +18,10 @@ form {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 25px;
+}
+#rand-form{
+    background-color: #f5f5f5;
+    box-shadow: none;
 }
 
 .radio-group {
@@ -30,6 +37,7 @@ input[type="radio"] {
     color: #f5f5f5;
     border: 1px solid #8F2A46;
     border-radius: 5px;
+    padding: 10px;
 }
 label {
     position: relative;
@@ -95,6 +103,14 @@ th, td {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 #generate-button {
+    background-color: #8F2A46;
+    color: #f5f5f5;
+    border: 1px solid #8F2A46;
+    border-radius: 5px;
+    height: 50px;
+    font-weight: bold;
+}
+.pdf-button {
     background-color: #8F2A46;
     color: #f5f5f5;
     border: 1px solid #8F2A46;
