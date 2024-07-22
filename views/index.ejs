@@ -1,15 +1,7 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PIG Application</title>
-</head>
-<body> -->
+
     <%- include("partials/header.ejs") %>
-    <!-- <h1>WELCOME TO THE PIG (Project Idea Generator)</h1>
-    <a href="/list">Get the project list</a> -->
-    <div id="loader-container"><div id="loader" class="loader"></div></div>
+
+    
     <div id="page-body">
         <form action="/project" method="post" id="project-form">
             <h3>Choose the field of the project:</h3>
@@ -26,7 +18,7 @@
                 <input type="radio" name="field" id="pharma" value="Pharmacy"><label for="pharma">Pharmacy</label>
             </div>
             <div class="radio-group">
-                <input type="radio" name="field" id="med" value="Medecine"><label for="med">Medecine</label>
+                <input type="radio" name="field" id="med" value="Medecine"><label for="med">Medicine</label>
             </div>
             <div class="radio-group">
                 <input type="radio" name="field" id="bugs" value="Entomology"><label for="bugs">Entomology (bugs)</label>
@@ -38,7 +30,6 @@
                 <input type="radio" name="field" id="water" value="Water Treatment"><label for="water">Water Treatment</label>
             </div>
             <h3>Choose an average duration for the project (in weeks):</h3>
-            <!-- <label for="project-duration">Number of weeks :</label> -->
             <input type="range" name="duration" id="project-duration" min="2" max="20" oninput="this.nextElementSibling.value = this.value">
             <output>2</output>
             <h3>Choose the difficulty:</h3>
@@ -51,10 +42,10 @@
             <div class="radio-group">
                 <input type="radio" name="difficulty" id="hard" value="hard"><label for="hard">hard</label>
             </div>
-        <input type="submit" value="Get Project" id="sub-button">
+        <div id="loader-container"><input type="submit" value="Get Project" id="sub-button"><div id="loader1" class="loader"></div></div>
         </form>
         <form action="/random-project" method="post" id="rand-form">
-            <input type="submit" value="I just want a small challenge" id="sub-button">
+            <div id="loader-container"></div><input type="submit" value="I want to help the university" id="sub-button"><div id="loader2" class="loader"></div></div>
         </form>
     </div>
     <script>
@@ -63,12 +54,26 @@
             const output = rangeInput.nextElementSibling;
             output.value = rangeInput.value;
         })
-        document.addEventListener("DOMContentLoaded", function() {
+        /*document.addEventListener("DOMContentLoaded", function() {
             const form = document.getElementById("project-form");
             const loader = document.getElementById("loader");
 
             form.addEventListener("submit", function(event) {
-                loader.style.display = "block"; // Show the loader
+                loader.style.display = "block"; 
+            });
+        });*/
+        document.addEventListener("DOMContentLoaded", function() {
+            const form1 = document.getElementById("project-form");
+            const form2 = document.getElementById("rand-form");
+            const loader1 = document.getElementById("loader1");
+            const loader2 = document.getElementById("loader2");
+
+            form1.addEventListener("submit", function(event) {
+                loader1.style.display = "inline-block"; 
+            });
+
+            form2.addEventListener("submit", function(event) {
+                loader2.style.display = "inline-block"; 
             });
         });
     </script>

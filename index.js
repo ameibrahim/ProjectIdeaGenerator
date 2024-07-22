@@ -71,7 +71,6 @@ app.post("/project", async(req, res)=>{
     let length = req.body["duration"];
 
     const prompt = `Generate a project idea in ${field} field for a university student (Assume that the student has a medium level in programming, AI, IoT and Web development). The project should have a level of difficulty that is ${difficulty} and that could take ${length} weeks to complete. Give your response as a JSON with three elements the project's title, the project's description and an array of tasks to complete the project (the array should not have more than 10 elements)`;
-    //console.log(prompt);
     let response = await main(prompt);
     let project = JSON.parse(response.message.content);
     
@@ -81,7 +80,6 @@ app.post("/project", async(req, res)=>{
       project = JSON.parse(response.message.content);
       duplicate = await isDuplicate(project);
     }
-    //console.log(project.tasks);
     await storeProject(project, field, difficulty);
     res.render("response.ejs", {
       project: project,
@@ -89,22 +87,41 @@ app.post("/project", async(req, res)=>{
       difficulty: difficulty,
       length: length
     })
-})
+});
+app.post("/random-project", async(req, res)=>{
+  const prompt = "Generate a project idea in any field for a university student (Assume that the student has a medium level in programming, AI, IoT and Web development). The project should have a level of difficulty that is not too easy and that could take 2 weeks to complete, it must be an app that could be useful to University life and that could be used by the academic staff, the students. Give your response as a JSON with three elements the project's title, the project's description and an array of tasks to complete the project (the array should not have more than 10 elements)";
+  let response = await main(prompt);
+  //console.log(response.message.content);
+  let project = JSON.parse(response.message.content);
+  let field = "Campus Life";
+  let difficulty = "Medium";
+  let length = 2;
+  let duplicate = await isDuplicate(project);
+  while(duplicate){
+    response = await main(prompt);
+    project = JSON.parse(response.message.content);
+    duplicate = await isDuplicate(project);
+  }
+  await storeProject(project, field, difficulty);
+  res.render("response-random.ejs", {
+    project: project,
+    field: field,
+    difficulty: difficulty,
+    length: length
+  })
+});
 app.get("/list", async (req, res)=>{
   const result = await db.query("SELECT * FROM projects");
-  //console.log(result.rows);
   res.render("projectList.ejs", {
     projects: result.rows
   });
 })
 app.post("/details", async (req, res)=>{
   let title = req.body["project-title"];
-  //console.log(title);
   try{
     const result = await db.query("SELECT * FROM projects WHERE title = $1", [title]);
-    //console.log(result.rows[0].task);
     const tasks = JSON.parse(result.rows[0].task)
-    //console.log(tasks[0]);
+    
     if(result.rows.length < 1){
       console.log("Error Project not found");
       res.redirect("/");
